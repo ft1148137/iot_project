@@ -6,7 +6,7 @@ import pytz
 import os
 
 class qr_code_generate:
-	def __init__(self,qr_size,time_zone,time_flag):
+	def __init__(self,qr_size,time_zone,time_flag,encode_flag):
 		self.formatted_date_with_corrections =""
 		if time_flag == True:
 			try:
@@ -19,7 +19,10 @@ class qr_code_generate:
 				self.formatted_date_with_corrections = str(local_dt).split(".")[0]
 			except: 
 				self.formatted_date_with_corrections = "please check the internet connect"
-
+		if encode_flag == True:
+			self.encode = True
+		else:
+			self.encode = False
 		self.qr = qrcode.QRCode(
 		version=1,
 		error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -28,7 +31,11 @@ class qr_code_generate:
 		)	
 
 	def save_qrcode(self,data,name):
-		self.qr.add_data(data + " " +self.formatted_date_with_corrections )
+		if self.encode :
+			encode_data = data + " " +self.formatted_date_with_corrections
+			self.qr.add_data(encode_data.encode('base64', 'strict'))
+		else:
+			self.qr.add_data(data + " " +self.formatted_date_with_corrections )
 		self.qr.make(fit=True)
 		img = self.qr.make_image(fill_color="black", back_color="white")
 		if not os.path.exists('qr_code'):
@@ -38,11 +45,11 @@ class qr_code_generate:
 if __name__== "__main__":
 	print("start") 
 	time_zone = "Asia/Shanghai"
-	qr = qr_code_generate(10,time_zone,True)
+	qr = qr_code_generate(10,time_zone,False,False)
 	name = "Sky worker"
 	product = "light sword"
-	please = "earth"
-	data = name + " " + product + " " + please
+	place = "earth"
+	data = name + " " + product + " " + place
 	qr.save_qrcode(data,name) 
 
 
