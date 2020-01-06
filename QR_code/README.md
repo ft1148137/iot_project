@@ -4,6 +4,9 @@ QR Code generator
 ```
 ntplib
 ```
+```
 pytz
 ```
+```
 pyqt
+```
