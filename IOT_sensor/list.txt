@@ -1,0 +1,10 @@
+bh1750 lichtsensor
+bmp280 air temp and pressure
+ccs811 co2
+HDC1000 air Humidity and temp
+sht35  soil Humidity and temp 
+
+Requirements:
+python-smbus 
+Adafruit_CircuitPython
+Adafruit_GPIO
