@@ -14,9 +14,9 @@ import smbus
 import time
 
 options = {
-    'productKey':'a1ETLzqS7TQ',
-    'deviceName':'test_sensor',
-    'deviceSecret':'BJOgp8Oj6x2CtBNcf0JlHkho4adkRIgq',
+    'productKey':'',
+    'deviceName':'',
+    'deviceSecret':'',
     'port':1883,
     'host':'iot-as-mqtt.cn-shanghai.aliyuncs.com'
 }
